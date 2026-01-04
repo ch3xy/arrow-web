@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, OnDestroy, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
