@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, signal } from '@angular/core';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,7 @@ import { AfterViewInit, Component, OnDestroy, signal } from '@angular/core';
 })
 export class App implements AfterViewInit, OnDestroy {
   protected readonly title = signal('arrow-web');
+  protected readonly contactEmail = environment.contactEmail;
 
   private observer?: IntersectionObserver;
 
