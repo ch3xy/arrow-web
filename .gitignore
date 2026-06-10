@@ -38,6 +38,15 @@ testem.log
 /typings
 __screenshots__/
 
+### Environment (sensible Konfiguration – lokal aus environment.example.ts erstellen) ###
+src/environments/environment.ts
+src/environments/environment.prod.ts
+
+### AI ###
+.claude/
+.ai/
+CLAUDE.md
+
 # System files
 .DS_Store
 Thumbs.db

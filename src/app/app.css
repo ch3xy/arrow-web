@@ -428,24 +428,110 @@
 
 .cta-section {
   margin-top: 48px;
-  padding: 20px;
+  padding: 28px;
   border-radius: 18px;
   border: 1px solid rgba(15, 23, 42, 0.08);
   background: linear-gradient(135deg, rgba(47, 176, 127, 0.12), rgba(52, 165, 199, 0.12), #ffffff);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 14px;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   text-align: left;
 }
 
-.cta-actions {
+.cta-head h2 {
+  margin: 6px 0 8px;
+  font-size: clamp(24px, 3vw, 32px);
+}
+
+.contact-form {
+  display: grid;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-field {
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-self: center;
-  padding-left: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field textarea {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.16);
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+  font-family: inherit;
+  color: #0f172a;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: #2fb07f;
+  box-shadow: 0 0 0 3px rgba(47, 176, 127, 0.15);
+}
+
+.form-field input.ng-invalid.ng-touched,
+.form-field textarea.ng-invalid.ng-touched {
+  border-color: #ef4444;
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-error {
+  font-size: 13px;
+  color: #ef4444;
+}
+
+.form-error-general {
+  font-size: 14px;
+  color: #ef4444;
+  margin: 0;
+}
+
+.form-success {
+  padding: 24px;
+  border-radius: 14px;
+  background: rgba(47, 176, 127, 0.1);
+  border: 1px solid rgba(47, 176, 127, 0.3);
+  text-align: center;
+}
+
+.form-success h3 {
+  margin: 0 0 8px;
+  color: #1a7a59;
+  font-size: 20px;
+}
+
+.form-success p {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.7);
+}
+
+.contact-form .btn {
+  justify-self: start;
+}
+
+.contact-form .btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .impressum {
@@ -510,7 +596,11 @@
     align-items: stretch;
   }
 
-  .cta-actions {
-    justify-content: center;
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form .btn {
+    justify-self: stretch;
   }
 }

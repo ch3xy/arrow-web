@@ -117,16 +117,52 @@
   </section>
 
   <section id="kontakt" class="cta-section reveal">
-    <div>
+    <div class="cta-head">
       <p class="eyebrow">Bereit für den nächsten Schritt?</p>
       <h2>Starten wir gemeinsam.</h2>
       <p class="section-copy">
         Von der Idee zur Umsetzung – mit klarer Struktur, transparenter Planung und zuverlässiger Lieferung.
       </p>
     </div>
-    <div class="cta-actions">
-      <a class="btn primary" [href]="'mailto:' + contactEmail">Anfrage senden</a>
-    </div>
+
+    @if (formState() === 'success') {
+      <div class="form-success">
+        <h3>Nachricht gesendet!</h3>
+        <p>Vielen Dank – ich melde mich so bald wie möglich bei Ihnen.</p>
+      </div>
+    } @else {
+      <form [formGroup]="contactForm" (ngSubmit)="submitForm()" class="contact-form" novalidate>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" type="text" formControlName="name" placeholder="Max Mustermann" autocomplete="name">
+            @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+              <span class="form-error" role="alert">Bitte geben Sie Ihren Namen ein.</span>
+            }
+          </div>
+          <div class="form-field">
+            <label for="contact-email">E-Mail</label>
+            <input id="contact-email" type="email" formControlName="email" placeholder="max@beispiel.at" autocomplete="email">
+            @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+              <span class="form-error" role="alert">Bitte geben Sie eine gültige E-Mail-Adresse ein.</span>
+            }
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="contact-message">Nachricht</label>
+          <textarea id="contact-message" formControlName="message" rows="4" placeholder="Beschreiben Sie Ihr Projekt kurz…"></textarea>
+          @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+            <span class="form-error" role="alert">Bitte geben Sie eine Nachricht ein (min. 10 Zeichen).</span>
+          }
+        </div>
+        @if (formState() === 'error') {
+          <p class="form-error-general" role="alert">Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.</p>
+        }
+        <button class="btn primary" type="submit" [disabled]="formState() === 'loading'">
+          {{ formState() === 'loading' ? 'Wird gesendet…' : 'Anfrage senden' }}
+        </button>
+      </form>
+    }
   </section>
 
   <section id="impressum" class="section reveal">

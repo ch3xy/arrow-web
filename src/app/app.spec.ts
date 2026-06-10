@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { App } from './app';
 
 class MockIntersectionObserver {
@@ -13,6 +14,7 @@ describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
+      providers: [provideHttpClientTesting()],
     }).compileComponents();
   });
 
