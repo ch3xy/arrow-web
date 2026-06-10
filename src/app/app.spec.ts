@@ -3,14 +3,24 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { App } from './app';
 
 class MockIntersectionObserver {
+  private cb: IntersectionObserverCallback;
   observe = vi.fn();
   unobserve = vi.fn();
   disconnect = vi.fn();
-  constructor(_cb: IntersectionObserverCallback, _opts?: IntersectionObserverInit) {}
+
+  constructor(cb: IntersectionObserverCallback, _opts?: IntersectionObserverInit) {
+    this.cb = cb;
+  }
+
+  trigger(entries: Partial<IntersectionObserverEntry>[]): void {
+    this.cb(entries as IntersectionObserverEntry[], this as unknown as IntersectionObserver);
+  }
 }
-vi.stubGlobal('IntersectionObserver', MockIntersectionObserver);
 
 describe('App', () => {
+  beforeAll(() => vi.stubGlobal('IntersectionObserver', MockIntersectionObserver));
+  afterAll(() => vi.unstubAllGlobals());
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
@@ -33,8 +43,7 @@ describe('App', () => {
 
   it('should expose contactEmail from environment', () => {
     const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance as unknown as { contactEmail: string };
-    expect(app.contactEmail).toBeTruthy();
-    expect(app.contactEmail).toContain('@');
+    expect(fixture.componentInstance.contactEmail).toBeTruthy();
+    expect(fixture.componentInstance.contactEmail).toContain('@');
   });
 });

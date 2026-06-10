@@ -14,7 +14,7 @@ type FormState = 'idle' | 'loading' | 'success' | 'error';
 })
 export class App implements AfterViewInit, OnDestroy {
   protected readonly title = signal('arrow-web');
-  protected readonly contactEmail = environment.contactEmail;
+  readonly contactEmail = environment.contactEmail;
   protected readonly formState = signal<FormState>('idle');
 
   private readonly fb = inject(FormBuilder);
