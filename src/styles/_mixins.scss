@@ -1,0 +1,25 @@
+@use 'variables' as *;
+
+@mixin card-base {
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  background: $color-white;
+}
+
+@mixin focus-ring {
+  outline: none;
+  border-color: $color-primary;
+  box-shadow: 0 0 0 3px rgba(47, 176, 127, 0.15);
+}
+
+@mixin mobile {
+  @media (max-width: #{$bp-mobile}) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}

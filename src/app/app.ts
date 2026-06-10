@@ -9,17 +9,21 @@ type FormState = 'idle' | 'loading' | 'success' | 'error';
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrl: './app.scss',
   imports: [ReactiveFormsModule],
 })
 export class App implements AfterViewInit, OnDestroy {
   protected readonly title = signal('arrow-web');
   readonly contactEmail = environment.contactEmail;
   protected readonly formState = signal<FormState>('idle');
+  protected readonly activeSection = signal<string>('');
 
   private readonly fb = inject(FormBuilder);
   private readonly http = inject(HttpClient);
   private observer?: IntersectionObserver;
+  private navObserver?: IntersectionObserver;
+  private sectionElements: HTMLElement[] = [];
+  private readonly visibleSectionIds = new Set<string>();
 
   protected readonly contactForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
@@ -28,6 +32,22 @@ export class App implements AfterViewInit, OnDestroy {
   });
 
   ngAfterViewInit(): void {
+    // Nav observer runs independently – must not be guarded by revealElements check
+    this.sectionElements = Array.from(document.querySelectorAll<HTMLElement>('section[id]'));
+    this.navObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) this.visibleSectionIds.add(e.target.id);
+          else this.visibleSectionIds.delete(e.target.id);
+        });
+        // pick topmost visible section in DOM order; clear when none visible
+        const topmost = this.sectionElements.find(s => this.visibleSectionIds.has(s.id));
+        this.activeSection.set(topmost?.id ?? '');
+      },
+      { threshold: 0.5 }
+    );
+    this.sectionElements.forEach(s => this.navObserver?.observe(s));
+
     const revealElements = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
     if (!revealElements.length) {
       return;
@@ -51,6 +71,7 @@ export class App implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.observer?.disconnect();
+    this.navObserver?.disconnect();
   }
 
   scrollTo(targetId: string): void {

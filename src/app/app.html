@@ -7,14 +7,14 @@
   <header class="hero reveal">
     <div class="nav">
         <div>
-          <div class="brand-name">Arrow Solutions</div>
-          <div class="brand-sub">IT Consulting</div>
+          <div class="nav__brand-name">Arrow Solutions</div>
+          <div class="nav__brand-sub">IT Consulting</div>
         </div>
       <div class="nav-links">
-        <button type="button" (click)="scrollTo('leistungen')">Leistungen</button>
-        <button type="button" (click)="scrollTo('referenzen')">Referenzen</button>
-        <button type="button" (click)="scrollTo('kontakt')">Kontakt</button>
-        <button class="ghost" type="button" (click)="scrollTo('impressum')">Impressum</button>
+        <button type="button" [class.active]="activeSection() === 'leistungen'" (click)="scrollTo('leistungen')">Leistungen</button>
+        <button type="button" [class.active]="activeSection() === 'referenzen'" (click)="scrollTo('referenzen')">Referenzen</button>
+        <button type="button" [class.active]="activeSection() === 'kontakt'"    (click)="scrollTo('kontakt')">Kontakt</button>
+        <button class="ghost" type="button" [class.active]="activeSection() === 'impressum'" (click)="scrollTo('impressum')">Impressum</button>
       </div>
     </div>
 
@@ -105,13 +105,13 @@
     </div>
     <div class="quotes logos">
       <a class="logo-card logo-ebcont reveal logo-link" href="https://www.ebcont.com" target="_blank" rel="noopener noreferrer" aria-label="EBCONT Website">
-        <img src="assets/ebcont-logo.png" alt="EBCONT Logo">
+        <img src="assets/ebcont-logo.png" alt="EBCONT Logo" loading="lazy">
       </a>
       <a class="logo-card logo-xebris reveal delay-1 logo-link" href="https://www.xebris.com" target="_blank" rel="noopener noreferrer" aria-label="XEBRIS Website">
-        <img src="assets/xebris-logo.jpg" alt="XEBRIS Logo">
+        <img src="assets/xebris-logo.jpg" alt="XEBRIS Logo" loading="lazy">
       </a>
       <a class="logo-card logo-bmi reveal delay-2 logo-link" href="https://www.bmi.gv.at" target="_blank" rel="noopener noreferrer" aria-label="BMI Website">
-        <img src="assets/bmi-logo.png" alt="BMI Logo">
+        <img src="assets/bmi-logo.png" alt="BMI Logo" loading="lazy">
       </a>
     </div>
   </section>
