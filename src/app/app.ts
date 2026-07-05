@@ -1,4 +1,12 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, inject, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  OnDestroy,
+  inject,
+  signal,
+} from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, timeout } from 'rxjs';
@@ -14,10 +22,11 @@ type FormState = 'idle' | 'loading' | 'success' | 'error';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App implements AfterViewInit, OnDestroy {
-  protected readonly title = signal('arrow-web');
   readonly contactEmail = environment.contactEmail;
   protected readonly formState = signal<FormState>('idle');
   protected readonly activeSection = signal<string>('');
+  protected readonly scrolled = signal(false);
+  protected readonly currentYear = new Date().getFullYear();
 
   private readonly fb = inject(FormBuilder);
   private readonly http = inject(HttpClient);
@@ -27,10 +36,17 @@ export class App implements AfterViewInit, OnDestroy {
   private readonly visibleSectionIds = new Set<string>();
 
   protected readonly contactForm = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(2)]],
-    email: ['', [Validators.required, Validators.email]],
-    message: ['', [Validators.required, Validators.minLength(10)]],
+    name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
+    email: ['', [Validators.required, Validators.email, Validators.maxLength(200)]],
+    message: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(2000)]],
+    // Honeypot gegen Spam-Bots – bleibt für Menschen unsichtbar und unangetastet
+    botcheck: [false],
   });
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    this.scrolled.set(window.scrollY > 12);
+  }
 
   ngAfterViewInit(): void {
     // Nav observer runs independently – must not be guarded by revealElements check
@@ -45,7 +61,7 @@ export class App implements AfterViewInit, OnDestroy {
         const topmost = this.sectionElements.find(s => this.visibleSectionIds.has(s.id));
         this.activeSection.set(topmost?.id ?? '');
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
     this.sectionElements.forEach(s => this.navObserver?.observe(s));
 
@@ -64,7 +80,7 @@ export class App implements AfterViewInit, OnDestroy {
           }
         });
       },
-      { threshold: 0.35 }
+      { threshold: 0.2 }
     );
 
     revealElements.forEach(el => this.observer?.observe(el));
@@ -82,7 +98,7 @@ export class App implements AfterViewInit, OnDestroy {
   }
 
   async submitForm(): Promise<void> {
-    if (this.formState() === 'loading') return; // [4] Re-Entrancy-Guard
+    if (this.formState() === 'loading') return; // Re-Entrancy-Guard
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
       return;
@@ -94,12 +110,14 @@ export class App implements AfterViewInit, OnDestroy {
       const res = await firstValueFrom(
         this.http.post<{ success: boolean }>('https://api.web3forms.com/submit', {
           access_key: environment.formAccessKey,
-          name: this.contactForm.value.name ?? '',
-          email: this.contactForm.value.email ?? '',
-          message: this.contactForm.value.message ?? '',
-        }).pipe(timeout(10_000)) // [5] Timeout nach 10 s
+          subject: 'Neue Projektanfrage über arrow-solutions.at',
+          name: (this.contactForm.value.name ?? '').trim(),
+          email: (this.contactForm.value.email ?? '').trim(),
+          message: (this.contactForm.value.message ?? '').trim(),
+          botcheck: this.contactForm.value.botcheck ?? false,
+        }).pipe(timeout(10_000))
       );
-      if (!res.success) throw new Error('web3forms rejected'); // [3] Response-Check
+      if (!res.success) throw new Error('web3forms rejected');
       this.formState.set('success');
       this.contactForm.reset();
     } catch {

@@ -9,18 +9,42 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.arrow-solutions.at/">
 
+  <!-- Security: CSP als Defense-in-Depth (frame-ancestors & HSTS zusätzlich als HTTP-Header am Server setzen).
+       ws://localhost:* ist ausschließlich für den Dev-Server (HMR) nötig und im Web wirkungslos. -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.web3forms.com ws://localhost:*; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#f6f7fb">
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.arrow-solutions.at/">
   <meta property="og:title" content="Arrow Solutions IT Consulting – Software Architektur &amp; Development">
   <meta property="og:description" content="Freelance Software-Entwicklung und Architektur aus Österreich. Java, Spring, CI/CD, Scrum.">
-  <meta property="og:image" content="https://www.arrow-solutions.at/assets/logo.png">
+  <meta property="og:image" content="https://www.arrow-solutions.at/assets/logo.svg">
   <meta property="og:locale" content="de_AT">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0&display=swap">
   <link rel="icon" type="image/svg+xml" href="assets/fav.svg">
+
+  <!-- Strukturierte Daten für Suchmaschinen -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Arrow Solutions IT Consulting",
+    "founder": { "@type": "Person", "name": "Igor Strilic" },
+    "url": "https://www.arrow-solutions.at/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Dr. Thomas Klestil-Straße 7/2",
+      "postalCode": "2231",
+      "addressLocality": "Strasshof an der Nordbahn",
+      "addressCountry": "AT"
+    },
+    "areaServed": "AT",
+    "knowsAbout": ["Software Architektur", "Java", "Spring", "CI/CD", "Scrum"]
+  }
+  </script>
 </head>
 <body>
   <app-root></app-root>

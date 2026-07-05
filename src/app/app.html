@@ -1,202 +1,319 @@
 <div class="page">
+  <a class="skip-link" href="#leistungen">Zum Inhalt springen</a>
   <div id="top"></div>
-  <div class="glow glow-one"></div>
-  <div class="glow glow-two"></div>
-  <div class="glow glow-three"></div>
+  <div class="glow glow-one" aria-hidden="true"></div>
+  <div class="glow glow-two" aria-hidden="true"></div>
+  <div class="glow glow-three" aria-hidden="true"></div>
 
-  <header class="hero reveal">
-    <div class="nav">
-        <div>
-          <div class="nav__brand-name">Arrow Solutions</div>
-          <div class="nav__brand-sub">IT Consulting</div>
-        </div>
+  <header class="site-header" [class.site-header--scrolled]="scrolled()">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <button class="nav__brand" type="button" (click)="scrollTo('top')" aria-label="Zum Seitenanfang">
+        <span class="nav__brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19L19 5"/><path d="M9 5h10v10"/></svg>
+        </span>
+        <span>
+          <span class="nav__brand-name">Arrow Solutions</span>
+          <span class="nav__brand-sub">IT Consulting</span>
+        </span>
+      </button>
       <div class="nav-links">
         <button type="button" [class.active]="activeSection() === 'leistungen'" (click)="scrollTo('leistungen')">Leistungen</button>
+        <button type="button" [class.active]="activeSection() === 'prozess'" (click)="scrollTo('prozess')">Ablauf</button>
         <button type="button" [class.active]="activeSection() === 'referenzen'" (click)="scrollTo('referenzen')">Referenzen</button>
-        <button type="button" [class.active]="activeSection() === 'kontakt'"    (click)="scrollTo('kontakt')">Kontakt</button>
-        <button class="ghost" type="button" [class.active]="activeSection() === 'impressum'" (click)="scrollTo('impressum')">Impressum</button>
+        <button type="button" [class.active]="activeSection() === 'impressum'" (click)="scrollTo('impressum')">Impressum</button>
+        <button class="nav-cta" type="button" (click)="scrollTo('kontakt')">Projekt anfragen</button>
       </div>
-    </div>
-
-    <div class="hero-grid">
-      <div class="hero-copy reveal">
-        <div class="eyebrow">Architektur • Design • Engineering</div>
-        <h1>Digitale Lösungen, die Ihr Unternehmen voranbringen.</h1>
-        <p>
-          Arrow Solutions IT Consulting entwirft und baut Software, die Prozesse beschleunigt,
-          Daten zum Sprechen bringt und nachhaltige digitale Lösungen schafft.
-        </p>
-        <div class="cta">
-          <button class="btn primary" type="button" (click)="scrollTo('kontakt')">Projekt anfragen</button>
-          <button class="btn secondary" type="button" (click)="scrollTo('referenzen')">Referenzen ansehen</button>
-        </div>
-      </div>
-      <div class="reveal delay-1 hero-logo-card">
-        <img src="assets/logo.svg" alt="Arrow Solutions Logo">
-      </div>
-    </div>
+    </nav>
   </header>
 
-  <section id="leistungen" class="section reveal">
-    <div class="section-head">
-      <div>
-        <p class="eyebrow">Leistungen</p>
-        <h2>Wir liefern End-to-End Engineering.</h2>
-      </div>
-    </div>
-    <div class="cards">
-      <div class="card reveal">
-        <div class="card-icon">01</div>
-        <h3>Software Architektur</h3>
-        <p>
-          Zielbild und Schnittstellen, die Skalierung und Sicherheit von Anfang an mitdenken.
-        </p>
-        <ul>
-          <li>Architektur-Blueprints</li>
-          <li>Domain-driven Design</li>
-          <li>Security & Compliance</li>
-        </ul>
-      </div>
-      <div class="card reveal delay-1">
-        <div class="card-icon">02</div>
-        <h3>Software Development</h3>
-        <p>
-          Skalierbare Backend-Systeme mit sauberer Architektur, klaren APIs und hoher Code-Qualität.
-        </p>
-        <ul>
-          <li>Java, Java EE, Spring</li>
-          <li>API-Design & Integration</li>
-          <li>Quality Gates & Testing</li>
-        </ul>
-      </div>
-      <div class="card reveal delay-2">
-        <div class="card-icon">03</div>
-        <h3>Automatisierung</h3>
-        <p>
-          Stabile Delivery-Pipelines, die Code zuverlässig vom Commit bis in die Produktion bringen.
-        </p>
-        <ul>
-          <li>CI/CD</li>
-          <li>Release-Flows</li>
-          <li>Monitoring & Alerting</li>
-        </ul>
-      </div>
-      <div class="card reveal delay-3">
-        <div class="card-icon">04</div>
-        <h3>Scrum</h3>
-        <p>
-          Agile Zusammenarbeit mit klaren Backlogs, Reviews und einem fokussierten Delivery-Rhythmus.
-        </p>
-        <ul>
-          <li>Product Backlog Refinement</li>
-          <li>Sprint Planning & Reviews</li>
-          <li>Transparente Burndowns</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="referenzen" class="section reveal">
-    <div class="section-head">
-      <div>
-        <p class="eyebrow">Referenzen</p>
-        <h2>Partner & Kunden</h2>
-      </div>
-    </div>
-    <div class="quotes logos">
-      <a class="logo-card logo-ebcont reveal logo-link" href="https://www.ebcont.com" target="_blank" rel="noopener noreferrer" aria-label="EBCONT Website">
-        <img src="assets/ebcont-logo.png" alt="EBCONT Logo" loading="lazy">
-      </a>
-      <a class="logo-card logo-xebris reveal delay-1 logo-link" href="https://www.xebris.com" target="_blank" rel="noopener noreferrer" aria-label="XEBRIS Website">
-        <img src="assets/xebris-logo.jpg" alt="XEBRIS Logo" loading="lazy">
-      </a>
-      <a class="logo-card logo-bmi reveal delay-2 logo-link" href="https://www.bmi.gv.at" target="_blank" rel="noopener noreferrer" aria-label="BMI Website">
-        <img src="assets/bmi-logo.png" alt="BMI Logo" loading="lazy">
-      </a>
-    </div>
-  </section>
-
-  <section id="kontakt" class="cta-section reveal">
-    <div class="cta-head">
-      <p class="eyebrow">Bereit für den nächsten Schritt?</p>
-      <h2>Starten wir gemeinsam.</h2>
-      <p class="section-copy">
-        Von der Idee zur Umsetzung – mit klarer Struktur, transparenter Planung und zuverlässiger Lieferung.
-      </p>
-    </div>
-
-    @if (formState() === 'success') {
-      <div class="form-success">
-        <h3>Nachricht gesendet!</h3>
-        <p>Vielen Dank – ich melde mich so bald wie möglich bei Ihnen.</p>
-      </div>
-    } @else {
-      <form [formGroup]="contactForm" (ngSubmit)="submitForm()" class="contact-form" novalidate>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="contact-name">Name</label>
-            <input id="contact-name" type="text" formControlName="name" placeholder="Max Mustermann" autocomplete="name">
-            @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
-              <span class="form-error" role="alert">Bitte geben Sie Ihren Namen ein.</span>
-            }
+  <main>
+    <section class="hero reveal" aria-label="Einleitung">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="hero-badge">
+            <span class="hero-badge__dot" aria-hidden="true"></span>
+            Software Engineering · Einzelunternehmen · Österreich
+          </p>
+          <h1>Digitale Lösungen, die Ihr Unternehmen <span class="text-gradient">voranbringen</span>.</h1>
+          <p class="hero-lead">
+            Arrow Solutions IT Consulting entwirft und entwickelt Software, die Prozesse beschleunigt,
+            Daten nutzbar macht und dauerhaft zuverlässig bleibt – von der Architektur bis in die Produktion.
+          </p>
+          <div class="cta">
+            <button class="btn primary" type="button" (click)="scrollTo('kontakt')">
+              Projekt anfragen
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+            </button>
+            <button class="btn secondary" type="button" (click)="scrollTo('referenzen')">Referenzen ansehen</button>
           </div>
-          <div class="form-field">
-            <label for="contact-email">E-Mail</label>
-            <input id="contact-email" type="email" formControlName="email" placeholder="max@beispiel.at" autocomplete="email">
-            @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
-              <span class="form-error" role="alert">Bitte geben Sie eine gültige E-Mail-Adresse ein.</span>
-            }
+          <ul class="hero-tags" aria-label="Technologie-Schwerpunkte">
+            <li>Java &amp; Spring</li>
+            <li>Software-Architektur</li>
+            <li>CI/CD</li>
+            <li>API-Design</li>
+            <li>Scrum</li>
+          </ul>
+        </div>
+        <div class="hero-visual reveal delay-1">
+          <div class="hero-visual__card">
+            <img src="assets/logo.svg" alt="Arrow Solutions Logo" width="444" height="262">
           </div>
         </div>
-        <div class="form-field">
-          <label for="contact-message">Nachricht</label>
-          <textarea id="contact-message" formControlName="message" rows="4" placeholder="Beschreiben Sie Ihr Projekt kurz…"></textarea>
-          @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
-            <span class="form-error" role="alert">Bitte geben Sie eine Nachricht ein (min. 10 Zeichen).</span>
+      </div>
+    </section>
+
+    <section id="leistungen" class="section reveal">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Leistungen</p>
+          <h2>End-to-End Engineering – aus einer Hand.</h2>
+          <p class="section-copy">
+            Von der ersten Architektur-Skizze bis zum stabilen Betrieb: klar strukturiert,
+            sauber umgesetzt und nachvollziehbar dokumentiert.
+          </p>
+        </div>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 12l10 5 10-5"/><path d="M2 17l10 5 10-5"/></svg>
+          </div>
+          <h3>Software Architektur</h3>
+          <p>
+            Zielbild und Schnittstellen, die Skalierung und Sicherheit von Anfang an mitdenken.
+          </p>
+          <ul>
+            <li>Architektur-Blueprints</li>
+            <li>Domain-driven Design</li>
+            <li>Security &amp; Compliance</li>
+          </ul>
+        </article>
+        <article class="card reveal delay-1">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+          </div>
+          <h3>Software Development</h3>
+          <p>
+            Skalierbare Backend-Systeme mit sauberer Architektur, klaren APIs und hoher Code-Qualität.
+          </p>
+          <ul>
+            <li>Java, Java EE, Spring</li>
+            <li>API-Design &amp; Integration</li>
+            <li>Quality Gates &amp; Testing</li>
+          </ul>
+        </article>
+        <article class="card reveal delay-2">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 014-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 01-4 4H3"/></svg>
+          </div>
+          <h3>Automatisierung</h3>
+          <p>
+            Stabile Delivery-Pipelines, die Code zuverlässig vom Commit bis in die Produktion bringen.
+          </p>
+          <ul>
+            <li>CI/CD</li>
+            <li>Release-Flows</li>
+            <li>Monitoring &amp; Alerting</li>
+          </ul>
+        </article>
+        <article class="card reveal delay-3">
+          <div class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3>Scrum</h3>
+          <p>
+            Agile Zusammenarbeit mit klaren Backlogs, Reviews und einem fokussierten Delivery-Rhythmus.
+          </p>
+          <ul>
+            <li>Product Backlog Refinement</li>
+            <li>Sprint Planning &amp; Reviews</li>
+            <li>Transparente Burndowns</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="prozess" class="section reveal">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Ablauf</p>
+          <h2>In drei Schritten zum Ergebnis.</h2>
+          <p class="section-copy">
+            Ein klarer Rahmen für die Zusammenarbeit – damit Sie jederzeit wissen, wo Ihr Projekt steht.
+          </p>
+        </div>
+      </div>
+      <ol class="process">
+        <li class="process-step reveal">
+          <span class="process-step__num" aria-hidden="true">01</span>
+          <h3>Erstgespräch</h3>
+          <p>
+            Wir klären unverbindlich Ihre Anforderungen, Ziele und Rahmenbedingungen –
+            und ob das Projekt zu meinem Profil passt.
+          </p>
+        </li>
+        <li class="process-step reveal delay-1">
+          <span class="process-step__num" aria-hidden="true">02</span>
+          <h3>Konzept &amp; Angebot</h3>
+          <p>
+            Sie erhalten einen konkreten Umsetzungsvorschlag mit transparentem
+            Zeit- und Kostenrahmen – ohne Kleingedrucktes.
+          </p>
+        </li>
+        <li class="process-step reveal delay-2">
+          <span class="process-step__num" aria-hidden="true">03</span>
+          <h3>Umsetzung &amp; Übergabe</h3>
+          <p>
+            Entwicklung in kurzen Iterationen mit regelmäßigen Reviews –
+            bis zur sauberen Übergabe in den Betrieb.
+          </p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="referenzen" class="section reveal">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Referenzen</p>
+          <h2>Partner &amp; Kunden</h2>
+          <p class="section-copy">
+            Unternehmen und Organisationen, mit denen Arrow Solutions zusammenarbeitet.
+          </p>
+        </div>
+      </div>
+      <div class="logos">
+        <a class="logo-card reveal logo-link" href="https://www.ebcont.com" target="_blank" rel="noopener noreferrer" aria-label="EBCONT Website">
+          <img src="assets/ebcont-logo.png" alt="EBCONT Logo" loading="lazy">
+        </a>
+        <a class="logo-card logo-xebris reveal delay-1 logo-link" href="https://www.xebris.com" target="_blank" rel="noopener noreferrer" aria-label="XEBRIS Website">
+          <img src="assets/xebris-logo.jpg" alt="XEBRIS Logo" loading="lazy">
+        </a>
+        <a class="logo-card logo-bmi reveal delay-2 logo-link" href="https://www.bmi.gv.at" target="_blank" rel="noopener noreferrer" aria-label="BMI Website">
+          <img src="assets/bmi-logo.png" alt="BMI Logo" loading="lazy">
+        </a>
+      </div>
+    </section>
+
+    <section id="kontakt" class="cta-section reveal">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p class="eyebrow">Bereit für den nächsten Schritt?</p>
+          <h2>Starten wir gemeinsam.</h2>
+          <p class="section-copy">
+            Von der Idee zur Umsetzung – mit klarer Struktur, transparenter Planung
+            und zuverlässiger Lieferung. Schreiben Sie mir, ich melde mich zeitnah.
+          </p>
+          <ul class="contact-facts">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+              <span>Unverbindliches Erstgespräch</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+              <span>Transparente Planung &amp; Fixtermine</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+              <span>Direkter Ansprechpartner – ohne Umwege</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-panel">
+          @if (formState() === 'success') {
+            <div class="form-success">
+              <h3>Nachricht gesendet!</h3>
+              <p>Vielen Dank – ich melde mich so bald wie möglich bei Ihnen.</p>
+            </div>
+          } @else {
+            <form [formGroup]="contactForm" (ngSubmit)="submitForm()" class="contact-form" novalidate>
+              <!-- Honeypot: für Menschen unsichtbar, Bots füllen es aus -->
+              <input class="hp-field" type="checkbox" formControlName="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="contact-name">Name</label>
+                  <input id="contact-name" type="text" formControlName="name" placeholder="Max Mustermann" autocomplete="name" maxlength="100">
+                  @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+                    <span class="form-error" role="alert">Bitte geben Sie Ihren Namen ein.</span>
+                  }
+                </div>
+                <div class="form-field">
+                  <label for="contact-email">E-Mail</label>
+                  <input id="contact-email" type="email" formControlName="email" placeholder="max@beispiel.at" autocomplete="email" maxlength="200">
+                  @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+                    <span class="form-error" role="alert">Bitte geben Sie eine gültige E-Mail-Adresse ein.</span>
+                  }
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="contact-message">Nachricht</label>
+                <textarea id="contact-message" formControlName="message" rows="5" placeholder="Beschreiben Sie Ihr Projekt kurz…" maxlength="2000"></textarea>
+                @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+                  <span class="form-error" role="alert">Bitte geben Sie eine Nachricht ein (min. 10 Zeichen).</span>
+                }
+              </div>
+              @if (formState() === 'error') {
+                <p class="form-error-general" role="alert">Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.</p>
+              }
+              <button class="btn primary" type="submit" [disabled]="formState() === 'loading'">
+                {{ formState() === 'loading' ? 'Wird gesendet…' : 'Anfrage senden' }}
+              </button>
+            </form>
           }
         </div>
-        @if (formState() === 'error') {
-          <p class="form-error-general" role="alert">Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.</p>
-        }
-        <button class="btn primary" type="submit" [disabled]="formState() === 'loading'">
-          {{ formState() === 'loading' ? 'Wird gesendet…' : 'Anfrage senden' }}
-        </button>
-      </form>
-    }
-  </section>
-
-  <section id="impressum" class="section reveal">
-    <div class="section-head">
-      <div>
-        <p class="eyebrow">Impressum</p>
-        <h2>Arrow Solutions IT Consulting</h2>
       </div>
+    </section>
+
+    <section id="impressum" class="section reveal">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Impressum</p>
+          <h2>Arrow Solutions IT Consulting</h2>
+        </div>
+      </div>
+      <div class="impressum">
+        <p class="impressum-line">
+          <svg class="impressum-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h1M9 13h1M14 9h1M14 13h1"/></svg>
+          <span><strong>Einzelunternehmen</strong></span>
+        </p>
+        <p class="impressum-line">
+          <svg class="impressum-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>Igor Strilic</span>
+        </p>
+        <p class="impressum-line">
+          <svg class="impressum-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Dr. Thomas Klestil-Straße 7/2 · 2231 Strasshof an der Nordbahn · Österreich</span>
+        </p>
+        <p class="impressum-line">
+          <svg class="impressum-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          <span>igor.strilic(at)arrow-solutions.at</span>
+        </p>
+        <p class="impressum-line">
+          <svg class="impressum-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <span>+43 664 193 4225</span>
+        </p>
+        <p class="impressum-line">
+          <svg class="impressum-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+          <span>USt-IdNr.: ATU80160059</span>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <p class="site-footer__brand">Arrow Solutions IT Consulting</p>
+        <p class="site-footer__tagline">Software Architektur &amp; Development aus Österreich.</p>
+      </div>
+      <nav class="site-footer__nav" aria-label="Fußzeilen-Navigation">
+        <button type="button" (click)="scrollTo('leistungen')">Leistungen</button>
+        <button type="button" (click)="scrollTo('prozess')">Ablauf</button>
+        <button type="button" (click)="scrollTo('referenzen')">Referenzen</button>
+        <button type="button" (click)="scrollTo('kontakt')">Kontakt</button>
+        <button type="button" (click)="scrollTo('impressum')">Impressum</button>
+      </nav>
     </div>
-    <div class="impressum">
-      <p class="impressum-line">
-        <span class="impressum-icon material-symbols-outlined" aria-hidden="true">business</span>
-        <span><strong>Einzelunternehmen</strong></span>
-      </p>
-      <p class="impressum-line">
-        <span class="impressum-icon material-symbols-outlined" aria-hidden="true">person</span>
-        <span>Igor Strilic</span>
-      </p>
-      <p class="impressum-line">
-        <span class="impressum-icon material-symbols-outlined" aria-hidden="true">location_on</span>
-        <span>Dr. Thomas Klestil-Straße 7/2 · 2231 Strasshof an der Nordbahn · Österreich</span>
-      </p>
-      <p class="impressum-line">
-        <span class="impressum-icon material-symbols-outlined" aria-hidden="true">mail</span>
-        <span>igor.strilic(at)arrow-solutions.at</span>
-      </p>
-      <p class="impressum-line">
-        <span class="impressum-icon material-symbols-outlined" aria-hidden="true">call</span>
-        <span>+43 664 193 4225</span>
-      </p>
-      <p class="impressum-line">
-        <span class="impressum-icon material-symbols-outlined" aria-hidden="true">credit_card</span>
-        <span>USt-IdNr.: ATU80160059</span>
-      </p>
-    </div>
-  </section>
+    <p class="site-footer__legal">© {{ currentYear }} Arrow Solutions IT Consulting · Igor Strilic</p>
+  </footer>
 </div>

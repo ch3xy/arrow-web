@@ -4,12 +4,30 @@
   border-radius: $radius-lg;
   border: 1px solid $color-border;
   background: $color-white;
+  box-shadow: $shadow-card;
+}
+
+@mixin card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-card-hover;
+    border-color: rgba(15, 23, 42, 0.14);
+  }
 }
 
 @mixin focus-ring {
   outline: none;
   border-color: $color-primary;
   box-shadow: 0 0 0 3px rgba(47, 176, 127, 0.15);
+}
+
+@mixin gradient-text {
+  background: $gradient-brand;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 @mixin mobile {
